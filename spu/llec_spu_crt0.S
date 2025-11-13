@@ -38,13 +38,13 @@ _start:
 
 #ifdef  LLEC_SPU_CRT0DEBUG
 
-	stqr	$0, __llec_spu_crt0debug_initial_lr
-	stqr	$1, __llec_spu_crt0debug_initial_sp
+	stqr	$0 , __llec_spu_crt0debug_initial_lr
+	stqr	$sp, __llec_spu_crt0debug_initial_sp
 
-	stqr	$3, __llec_spu_crt0debug_initial_r3
-	stqr	$4, __llec_spu_crt0debug_initial_r4
-	stqr	$5, __llec_spu_crt0debug_initial_r5
-	stqr	$6, __llec_spu_crt0debug_initial_r6
+	stqr	$3 , __llec_spu_crt0debug_initial_r3
+	stqr	$4 , __llec_spu_crt0debug_initial_r4
+	stqr	$5 , __llec_spu_crt0debug_initial_r5
+	stqr	$6 , __llec_spu_crt0debug_initial_r6
 
 #endif/*LLEC_SPU_CRT0DEBUG*/
 
@@ -52,13 +52,13 @@ _start:
     hbrr _init, 0
 
 
-    il      $2, 0               #   si_r2 = NULL
-    ila     $1, __stack         #   si_sp = &__stack
+    il      $2 , 0                #   r2 = 0
+    ila     $sp, __stack          #   sp = &__stack
 
-	stqd    $2, 0($1)           #   __stack[0] = si_r2
+	stqd    $2 , 0($sp)           #   __stack[0] = r2
 
-	stqd    $1, -32($1)         #   __stack[-2] = __stack
-	ai      $1, $1     , -32    #   si_sp = &__stack[-2]
+	stqd    $sp, -32($sp)         #   __stack[-2] = __stack
+	ai      $sp, $sp     , -32    #   sp = &__stack[-2]
 
 #
 #   +--------------------------+
