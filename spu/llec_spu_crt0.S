@@ -6,10 +6,6 @@
 
 
 
-    .extern __llec_spu_crt___stack_size
-    .type __llec_spu_crt___stack_size, @object
-
-
     .extern llec_spu_ctr0_c___stack_size
     .type llec_spu_ctr0_c___stack_size, @function
 
@@ -52,13 +48,13 @@ _start:
     hbrr _init, 0
 
 
-    il      $2 , 0                #   r2 = 0
-    ila     $sp, __stack          #   sp = &__stack
+    il      $2 , 0                  #   r2 = 0
+    ila     $sp, __stack            #   sp = &__stack
 
-	stqd    $2 , 0($sp)           #   __stack[0] = r2
+	stqd    $2 , 0($sp)             #   __stack[0] = r2
 
-	stqd    $sp, -32($sp)         #   __stack[-2] = __stack
-	ai      $sp, $sp     , -32    #   sp = &__stack[-2]
+	stqd    $sp, -32($sp)           #   __stack[-2] = __stack
+	ai      $sp, $sp     , -32      #   sp = &__stack[-2]
 
 #
 #   +--------------------------+
@@ -99,13 +95,18 @@ _start:
 
 
 
-    .section ".data", "aw", @progbits
+#if defined (__SPU_THREAD__) || \
+    defined (__SPU_RAW__   )
+
+    .section ".rodata", "a", @progbits
 	.weak _cell_spu_ls_param
 	.align 16
 	.type _cell_spu_ls_param, @object
 	.size _cell_spu_ls_param, 16
 _cell_spu_ls_param:
-	.long 0
-	.long 0
-	.long 0
-	.long 0
+	.long 0                         #   heap_size
+	.long 0                         #   stck_size
+	.long 0                         #   zero0
+	.long 0                         #   zero1
+
+#endif
