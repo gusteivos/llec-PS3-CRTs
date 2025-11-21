@@ -15,10 +15,10 @@ CFLAGS="-D__SPU_THREAD__ -Os"
 spu-gcc -c spu/llec_spu_celloslv2.c -o llec_spu_celloslv2.c.o $CFLAGS -Ispu/include/
 
 spu-gcc -c spu/llec_spu_crt0.c -o llec_spu_crt0.c.o $CFLAGS -Ispu/include/
-spu-gcc -c spu/llec_spu_crt0.S -o llec_spu_crt0.S.o $CFLAGS -Ispu/include/ -D__ASSEMBLY__ -D__PSL1GHT -D__NEWLIB__
+spu-gcc -c spu/llec_spu_crt0.S -o llec_spu_crt0.S.o $CFLAGS -Ispu/include/ -D__ASSEMBLY__ -D__NEWLIB__
 
 
-spu-ld -r llec_spu_crt0.c.o llec_spu_crt0.S.o llec_spu_celloslv2.c.o -o llec-PSL1GHT-crt1.o
+spu-ld -r llec_spu_crt0.c.o llec_spu_crt0.S.o llec_spu_celloslv2.c.o -o llec-PSL1GHT-spu_thread-crt1.o
 
 
-cp llec-PSL1GHT-crt1.o $PS3DEV/spu/spu/lib/crt1.o
+cp llec-PSL1GHT-spu_thread-crt1.o $PS3DEV/spu/spu/lib/crt1.o

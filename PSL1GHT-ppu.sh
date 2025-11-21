@@ -13,7 +13,7 @@ ppu-gcc -c ppu/llec_ppu_crt0.c -o llec_ppu_crt0.c.o -Ippu/include/
 ppu-gcc -c ppu/llec_ppu_crt0.S -o llec_ppu_crt0.S.o -Ippu/include/ -D__ASSEMBLY__ -D__PSL1GHT
 
 
-ppu-ld -r llec_ppu_crt0.c.o llec_ppu_crt0.S.o crt1.o -o lv2-crt0.o
+ppu-ld -r llec_ppu_crt0.c.o llec_ppu_crt0.S.o PSL1GHT-ppu-crt1.o -o llec-PSL1GHT-ppu-crt0.o
 
 
-cp lv2-crt0.o $PS3DEV/ppu/ppu/lib/lv2-crt0.o
+cp llec-PSL1GHT-ppu-crt0.o $PS3DEV/ppu/ppu/lib/lv2-crt0.o
