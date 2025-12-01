@@ -6,21 +6,29 @@
 
 
 
-#ifdef __PSL1GHT
+#if   defined (__PSL1GHT)
 
     .extern ._initialize
 	.type ._initialize, @function
 
-#else
+#elif defined (__LLEC__ )
 
-	.extern ._initialize_libc
-	.type ._initialize_libc, @function
+	.extern .__initialize_gloss
+	.type .__initialize_gloss, @function
+
+	.extern .__initialize_c
+	.type .__initialize_c, @function
 
 	.extern .main
 	.type .main, @function
 
 	.extern .exit
 	.type .exit, @function
+
+#elif defined (__SCE__  )
+
+    .extern ._initialize
+	.type ._initialize, @function
 
 #endif
 
@@ -60,16 +68,20 @@
     std     r16, 0(sp)
 
 
-#ifdef __PSL1GHT
+#if   defined (__PSL1GHT)
 
 	bl		._initialize
 
-#else
+#elif defined (__LLEC__ )
 
 	mr 		r30, r3
 	mr 		r31, r4
 
-	bl 		._initialize_libc
+	bl .__initialize_gloss
+	nop
+
+	bl .__initialize_c
+	nop
 
 	mr 		r3 , r30
 	mr 		r4 , r31
@@ -79,6 +91,12 @@
 	nop
 
 	bl 		.exit
+
+#elif defined (__SCE__  )
+
+	# Maybe __SEC__ needs something special.
+
+	bl		._initialize
 
 #endif
 
