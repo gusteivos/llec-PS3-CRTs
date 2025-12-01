@@ -51,18 +51,8 @@
 #endif
 
 
-#ifndef __LP32__
-
-    li32   (r14, LLEC_PPU_CRT_BADDA1A0);
-	cmpw 	r14, toc
-	bne+	.L_start_.opd_is_fixed
-
     li64   (r15, __llec_ppu_crt0__TOC__tocbase);
 	ld 		toc , 0(r15)
-
-.L_start_.opd_is_fixed:
-
-#endif
 
 
 	stdu 	sp , -112(sp)
@@ -120,7 +110,7 @@ __llec_ppu_crt0__TOC__tocbase:
 	.size _start, 24
 _start:
 	.long ._start
-	.long LLEC_PPU_CRT_BADDA1A0
+	.long 0
 
     .quad 0
 	.quad 0
