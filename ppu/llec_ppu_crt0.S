@@ -94,7 +94,7 @@
 
 #elif defined (__SCE__  )
 
-	# Maybe __SEC__ needs something special.
+	# Maybe __SCE__ needs something special.
 
 	bl		._initialize
 
