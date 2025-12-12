@@ -100,13 +100,13 @@ _start:
 
     .section ".rodata", "a", @progbits
 	.weak _cell_spu_ls_param
-	.align 16
+	.align 3
 	.type _cell_spu_ls_param, @object
-	.size _cell_spu_ls_param, 16
 _cell_spu_ls_param:
 	.long 0                         #   heap_size
 	.long 0                         #   stck_size
 	.long 0                         #   zero0
 	.long 0                         #   zero1
+	.size _cell_spu_ls_param, . - _cell_spu_ls_param
 
 #endif
