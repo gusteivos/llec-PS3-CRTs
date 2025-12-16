@@ -46,6 +46,21 @@ __llec_ppu_crt0__TOC__tocbase:
 
 
     .section ".opd", "aw"
+
+#ifdef  __PSL1GHT__OPD
+
+	.align 3
+	.globl __psl1ght__opd__start
+	.size __psl1ght__opd__start, 24
+__psl1ght__opd__start:
+	.quad ._start
+	.quad .TOC.@tocbase
+	.quad 0
+
+	.section ".data", "aw"
+
+#endif
+
 	.align 3
 	.globl _start
 	.size _start, 24
