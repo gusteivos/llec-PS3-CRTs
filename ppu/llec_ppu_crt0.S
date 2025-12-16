@@ -34,12 +34,49 @@
 
 
 
+#ifndef __LP32__
+
+	.section ".rodata", "a"
+	.align 2
+	.globl __llec_ppu_crt0__TOC__tocbase
+	.type __llec_ppu_crt0__TOC__tocbase, @object
+	.size __llec_ppu_crt0__TOC__tocbase, 8
+__llec_ppu_crt0__TOC__tocbase:
+    .quad .TOC.@tocbase
+
+
+    .section ".opd", "aw"
+	.align 3
+	.globl _start
+	.size _start, 24
+_start:
+	.long ._start
+	.long 0
+
+    .quad 0
+	.quad 0
+
+#else
+
+    .section ".opd", "aw"
+	.align 2
+	.globl _start
+	.size _start, 8
+_start:
+	.long ._start
+	.long .TOC.@tocbase32
+
+#endif
+
+
+
 	.section ".text", "ax", @progbits
+	.align 2
     .globl ._start
 	.type ._start, @function
 ._start:
 
-#ifdef LLEC_PPU_CRT0DEBUG
+#ifdef  LLEC_PPU_CRT0DEBUG
 
 	li64   (r14, __llec_ppu_crt0debug_initial_sp );
     std     sp , 0(r14)
@@ -59,8 +96,12 @@
 #endif
 
 
+#ifndef __LP32__
+
     li64   (r15, __llec_ppu_crt0__TOC__tocbase);
 	ld 		toc , 0(r15)
+
+#endif
 
 
 	stdu 	sp , -112(sp)
@@ -108,38 +149,3 @@
 	b .L_start_hang
 
 	.size ._start, . - ._start
-
-
-
-#ifndef __LP32__
-
-	.section ".rodata", "a"
-	.align 2
-	.globl __llec_ppu_crt0__TOC__tocbase
-	.type __llec_ppu_crt0__TOC__tocbase, @object
-	.size __llec_ppu_crt0__TOC__tocbase, 8
-__llec_ppu_crt0__TOC__tocbase:
-    .quad .TOC.@tocbase
-
-
-    .section ".opd", "aw"
-	.align 3
-	.globl _start
-	.size _start, 24
-_start:
-	.long ._start
-	.long 0
-
-    .quad 0
-	.quad 0
-
-#else
-
-    .section ".opd", "aw"
-	.align 2
-	.globl _start
-_start:
-	.long ._start
-	.long .TOC.@tocbase32
-
-#endif

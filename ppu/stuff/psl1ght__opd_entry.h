@@ -2,7 +2,8 @@
 #ifndef PSL1GHT__OPD_ENTRY_H
 #define PSL1GHT__OPD_ENTRY_H
 
-__attribute__((packed, aligned(3)))
+
+__attribute__((packed))
 struct psl1ght__opd_entry_s
 {
 
@@ -25,5 +26,6 @@ struct psl1ght__opd_entry_s
     unsigned long long environment;
 
 };
+
 
 #endif/*PSL1GHT__OPD_ENTRY_H*/

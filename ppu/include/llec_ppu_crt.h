@@ -1,12 +1,10 @@
 
-#ifndef LLEC_PPU_CRT_H
-#define LLEC_PPU_CRT_H
-
-#define LLEC_PPU_CRT_BADDA1A0 0xBADDA1A0
+#ifndef LLEC_PPU_C_RUN_TIME_H
+#define LLEC_PPU_C_RUN_TIME_H
 
 
+#ifdef  __ASSEMBLY__
 
-#ifdef __ASSEMBLY__
 
 #include <ppc-asm.h>
 
@@ -23,7 +21,9 @@
     oris    r, r, value@h       ;\
     ori     r, r, value@l        \
 
+
 #else
+
 
 #ifndef __LP32__
 
@@ -31,6 +31,8 @@ extern unsigned long long __llec_ppu_crt0__TOC__tocbase;
 
 #endif
 
+
 #endif
 
-#endif/*LLEC_PPU_CRT_H*/
+
+#endif/*LLEC_PPU_C_RUN_TIME_H*/

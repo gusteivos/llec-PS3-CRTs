@@ -13,7 +13,7 @@ unsigned long long __llec_ppu_crt0debug_initial_r4 ;
 
 unsigned long long __llec_ppu_crt0debug_initial_r13;
 
-#endif/*LLEC_PPU_CRT0DEBUG*/
+#endif
 
 
 
