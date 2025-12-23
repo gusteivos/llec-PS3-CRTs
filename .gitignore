@@ -1,4 +1,6 @@
 
+# c stuff:
+
 # Object files
 *.o
 *.ko
@@ -19,3 +21,23 @@
 *.a
 *.la
 *.lo
+
+
+
+# python stuff:
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+
+# Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
