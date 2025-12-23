@@ -57,7 +57,7 @@ __psl1ght__opd__start:
 	.quad .TOC.@tocbase
 	.quad 0
 
-	.section ".data", "aw"
+	.section ".rodata", "a"
 
 #endif
 
