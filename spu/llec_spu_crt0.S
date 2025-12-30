@@ -45,9 +45,6 @@ _start:
 #endif/*LLEC_SPU_CRT0DEBUG*/
 
 
-    hbrr _init, 0
-
-
     il      $2 , 0                  #   r2 = 0
     ila     $sp, __stack            #   sp = &__stack
 
